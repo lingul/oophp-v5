@@ -4536,7 +4536,7 @@ a.rm-button.rm-clicked .rm-button-face-2 {
   height: 500px;
   overflow-y: auto;
   padding-top: 72px;
-  background-color: #131313;
+  background-color: #a9a9a9;
   /* Color when menu item is clicked */
   /* Button for submenu */
   /* Style for submenu */
@@ -5020,7 +5020,7 @@ hr::after {
   margin-right: auto;
   margin-left: auto;
   max-width: 100%;
-  color: black;
+  color: #a9a9a9;
 }
 .region-header-col-2 {
   float: left;

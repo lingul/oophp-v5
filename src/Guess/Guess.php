@@ -1,7 +1,4 @@
 <?php
-/**
- * Guessing game.
- */
 
 namespace ligm19\Guess;
 
@@ -11,94 +8,86 @@ namespace ligm19\Guess;
 class Guess
 {
     /**
-     * @var int $number   The current secret number.
-     * @var int $tries    Number of tries a guess has been made.
-     * @var int $guess    Players guess.
-     * @var string $doInit    Starts game.
-     * @var string $doGuess    Make a guess.
-     * @var string $doCheat    Show secret number.
+     * @var int $GUESS_MIN The minimum number that can be guessed from.
+     * @var int $GUESS_MAX The maximum number that can be guessed from.
      */
-    public $number;
-    public $tries;
-    public $guess;
-    public $doInit;
-    public $doGuess;
-    public $doCheat;
+    const GUESS_MIN = 1;
+    const GUESS_MAX = 100;
 
+    /** @var int    $number    The current secret number. */
+    private $number;
+    /** @var int    $tries     Number of tries a guess has been made. */
+    private $tries;
+    /** @var int    $maxTries  Max number of tries allowed. */
+    private $maxTries;
+    /** @var int    $recent    The most recent guess made. */
+    private $recent;
+    /** @var string $state     State of the game. */
+    private $state;
+    /** @var string $gameId    The id of the game. */
+    private $gameId;
 
 
     /**
      * Constructor to initiate the object with current game settings,
      * if available. Randomize the current number if no value is sent in.
      *
+     * @throws Exception if number is outside of range GUESS_MIN-GUESS_MAX and not -1 or
+     * tries is less than 1.
+     *
      * @param int $number The current secret number, default -1 to initiate
      *                    the number from start.
-     * @param int $tries  Number of tries a guess has been made,
-     *                    default 6.
+     * @param int $tries  Number of tries which can be made.
      */
     public function __construct(int $number = -1, int $tries = 6)
     {
-        $this->number = $number;
-        $this->tries = $tries;
-        $this->random();
-    }
+        /**
+         * Initiate the game with the specified secret number or a random one if
+         * none is specified, throw an Exception if an invalid number is provided.
+         */
+        if ($number === -1) {
+            $this->random();
+        } elseif ($number < Guess::GUESS_MIN || $number > Guess::GUESS_MAX) {
+            throw new GuessException("Number must be between {Guess::GUESS_MIN}-{Guess::GUESS_MAX} or -1 to randomize.");
+        } else {
+            $this->number = $number;
+            $this->tries = 0;
+            $this->state = "INITIATED";
+            $this->recent = 0;
+        }
 
-    /**
-     * Set the string to start game.
-     *
-     * @param string $doInit Starts game.
-     *
-     * @return void
-     */
-    public function setInit(string $doInit)
-    {
-        $this->doInit = $doInit;
-    }
+        /**
+         * Initiate the game with specified number of tries, throw an Exception if
+         * tries fewer than 1.
+         */
+        if ($tries < 1) {
+            throw new GuessException("Tries must be greater than 1.");
+        } else {
+            $this->maxTries = $tries;
+        }
 
-    /**
-     * Set the string to make guess.
-     *
-     * @param string $doGuess Make a guess.
-     *
-     * @return void
-     */
-    public function setGuess(string $doGuess)
-    {
-        $this->doGuess = $doGuess;
-    }
-
-
-    /**
-     * Set the string to show secret number.
-     *
-     * @param string $doCheat Show secret number.
-     *
-     * @return void
-     */
-    public function setCheat(string $doCheat)
-    {
-        $this->doCheat = $doCheat;
-    }
-
-    /**
-     * Randomize the secret number between 1 and 100 to initiate a new game.
-     *
-     * @return void
-     */
-    private function random()
-    {
-        $this->number = rand(1, 100);
+        /**
+         * Create the game id.
+         */
+        $hash = hash_init("sha256");
+        hash_update($hash, rand());
+        $this->gameId = hash_final($hash);
     }
 
 
+
     /**
-     * Reset number of tries.
+     * Randomize the secret number between 1 and 100 and reset number of tries made
+     * to initiate a new game.
      *
      * @return void
      */
-    public function resetTries()
+    public function random()
     {
-        $this->tries = 6;
+        $this->number = rand(Guess::GUESS_MIN, Guess::GUESS_MAX);
+        $this->tries = 0;
+        $this->state = "INITIATED";
+        $this->recent = 0;
     }
 
 
@@ -106,11 +95,11 @@ class Guess
     /**
      * Get number of tries left.
      *
-     * @return int as number of tries made.
+     * @return int as number of tries left.
      */
     public function tries()
     {
-        return $this->tries;
+        return $this->maxTries - $this->tries;
     }
 
 
@@ -127,6 +116,41 @@ class Guess
 
 
 
+    /**
+     * Get the game id.
+     *
+     * @return string as game id.
+     */
+    public function gameId()
+    {
+        return $this->gameId;
+    }
+
+
+
+    /**
+     * Get the game state.
+     *
+     * @return string as game state.
+     */
+    public function state()
+    {
+        return $this->state;
+    }
+
+
+
+    /**
+     * Get most recent guess.
+     *
+     * @return int last guess.
+     */
+    public function recent()
+    {
+        return $this->recent;
+    }
+
+
 
     /**
      * Make a guess, decrease remaining guesses and return a string stating
@@ -134,33 +158,51 @@ class Guess
      *
      * @throws GuessException when guessed number is out of bounds.
      *
-     * @return string to show the status of the guess made.
+     * @param int $number The number being guessed.
      *
-     * @param int $guess namber that has been guessed.
+     * @return string to show the state of the guess made.
      */
-    public function makeGuess(int $guess)
+    public function makeGuess($number)
     {
-        $res = "";
-        if ($guess > 100 || $guess < 1) {
-            throw new GuessException("Guess is not between 1 and 100.");
-        } else {
-            if ($this->doInit === "Start from beginning" || $this->number === -1) {
-                //$res = $this->number;
-                // Init the game.
-                $this->random();
-                $this->resetTries();
-            } elseif ($this->doGuess) {
-                // Do a guess.
-                $this->tries -= 1;
-                if ($guess === $this->number) {
-                    $res = "CORRECT";
-                } elseif ($guess > $this->number) {
-                    $res = "TOO HIGH";
-                } else {
-                    $res = "TOO LOW";
-                }
-            }
+        $state = $this->state();
+
+        /**
+         * Check if game is still active.
+         */
+        if ($state === "NO_TRIES" || $state === "CORRECT_GUESS") {
+            return $state;
         }
-        return $res;
+
+        /**
+         * Check if guess is in valid range.
+         */
+        if ($number < Guess::GUESS_MIN || $number > Guess::GUESS_MAX) {
+            throw new GuessException("INVALID_GUESS");
+            return $state;
+        }
+
+        /**
+         * Increase number of tries and set recent guess.
+         */
+        $triesLeft = $this->maxTries - ++$this->tries;
+        $this->recent = $number;
+
+        /**
+         * Determine if guess is too low, too high or correct and return
+         * the appropriate string.
+         */
+        if ($number > $this->number) {
+            $this->state = "HIGH_GUESS";
+        } else if ($number < $this->number) {
+            $this->state = "LOW_GUESS";
+        } else {
+            $this->state = "CORRECT_GUESS";
+        }
+
+        if ($triesLeft <= 0 && $this->state !== "CORRECT_GUESS") {
+            $this->state = "NO_TRIES";
+        }
+
+        return $this->state;
     }
 }

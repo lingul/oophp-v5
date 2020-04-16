@@ -1,7 +1,5 @@
 <?php
-/**
- * Exception for GuessException.
- */
+
 namespace ligm19\Guess;
 
 /**

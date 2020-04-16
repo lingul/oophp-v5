@@ -1,104 +1,91 @@
 <?php
 /**
- * Create routes using $app programming style.
+ * Guess the number game.
  */
-//var_dump(array_keys(get_defined_vars()));
-
-
 
 /**
- * Init the game and resirect to play the game.
+ * Landing page.
  */
-$app->router->get("guess/init", function () use ($app) {
-    // Init the game;
-    $object = new ligm19\Guess\Guess();
-    $_SESSION["object"] = serialize($object);
+$app->router->get("guess", function () use ($app) {
+    $title = "Guess the number";
 
-    return $app->response->redirect("guess/play");
-});
+    $app->page->add("guess/landing");
+    // $app->page->add("guess/debug");
 
-
-
-/**
- * Play the game - show game status
- */
-$app->router->get("guess/play", function () use ($app) {
-    $title = "Play the game!";
-
-    //Incoming variables.
-    $guess = $_SESSION["guess"] ?? null;
-    $doInit = $_SESSION["doInit"] ?? "";
-    $doGuess = $_SESSION["doGuess"] ?? "";
-    $doCheat = $_SESSION["doCheat"] ?? "";
-    $res = $_SESSION["res"] ?? "";
-
-    if (isset($_SESSION["object"])) {
-        $object = unserialize($_SESSION["object"]);
-    } else {
-        $object = new ligm19\Guess\Guess();
-        $_SESSION["object"] = serialize($object);
-    }
-
-    $data = [
-        "guess" => $guess ?? null,
-        "tries" => $object->tries(),
-        "number" => $object->number(),
-        "res" => $res,
-        "object" => $object,
-        "doGuess" => $doGuess ?? null,
-        "doCheat" => $doCheat ?? null
-    ];
-    $_SESSION["object"] = serialize($object);
-
-    $app->page->add("guess/play", $data);
     return $app->page->render([
         "title" => $title,
     ]);
 });
 
+/**
+ * Start new game.
+ */
+$app->router->get("guess/new", function () use ($app) {
+    $_SESSION['guess'] = new ligm19\Guess\Guess();
 
+    return $app->response->redirect("guess/game");
+});
 
 /**
- * Play the game - make a guess
+ * Play game.
  */
-$app->router->post("guess/play", function () use ($app) {
-    //Incoming variables.
-    $guess = $_POST["guess"] ?? null;
-    $doInit = $_POST["doInit"] ?? "";
-    $doGuess = $_POST["doGuess"] ?? "";
-    $doCheat = $_POST["doCheat"] ?? "";
-
-    $_SESSION["doCheat"] = $doCheat;
-    $_SESSION["doInit"] = $doInit;
-    $_SESSION["doGuess"] = $doGuess;
-
-
-
-    if (isset($_SESSION["object"])) {
-        $object = unserialize($_SESSION["object"]);
-    } else {
-        $object = new ligm19\Guess\Guess();
-        $_SESSION["object"] = serialize($object);
+$app->router->get("guess/game", function () use ($app) {
+    if (!isset($_SESSION["guess"])) {
+        return $app->response->redirect("guess");
     }
 
-    $object->setInit($doInit);
-    $object->setGuess($doGuess);
-    $object->setCheat($doCheat);
+    $title = "Guess the number";
 
-    if ($doInit === "Start from beginning") {
-        $object = new ligm19\Guess\Guess();
+    $data = [
+        "guess"  => $_SESSION["guess"],
+        "tries"  => $_SESSION["guess"]->tries(),
+        "recent" => $_SESSION["guess"]->recent()
+    ];
+
+    $app->page->add("guess/game", $data);
+    // $app->page->add("guess/debug");
+
+    return $app->page->render([
+        "title" => $title,
+    ]);
+});
+
+/**
+ * Post route to make guess.
+ */
+$app->router->post("guess/game", function () use ($app) {
+    if (!isset($_SESSION["guess"])) {
+        return $app->response->redirect("guess");
     }
 
-    if ($doGuess) {
-        try {
-            $res = $object->makeGuess((int)$guess);
-        } catch (ligm19\Guess\GuessException $e) {
-            $res = "not between 1 and 100";
+    if (isset($_POST["csrf"]) && ($_SESSION["guess"]->gameId() === $_POST["csrf"])) {
+        $guess = $_SESSION["guess"];
+
+        if (isset($_POST["number"])) {
+            try {
+                $guess->makeGuess((int)$_POST["number"]);
+            } catch (Exception $e) {
+                console.log("Exception {$e} caught.");
+            }
         }
-        $_SESSION["res"] = $res;
-        $_SESSION["guess"] = $guess;
-    }
-    $_SESSION["object"] = serialize($object);
+    } else {
+        unset($_SESSION["guess"]);
 
-    return $app->response->redirect("guess/play");
+        return $app->response->redirect("guess");
+    }
+
+    return $app->response->redirect("guess/game");
+});
+
+/**
+ * Enable cheat.
+ */
+$app->router->get("guess/cheat", function () use ($app) {
+    if (!isset($_SESSION["guess"])) {
+        return $app->response->redirect("guess");
+    }
+
+    $_SESSION["cheat"] = true;
+
+    return $app->response->redirect("guess/game");
 });
