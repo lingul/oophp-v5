@@ -64,9 +64,9 @@ return [
             "title" => "Testa och lek med test- och exempelprogram",
         ],
         [
-            "text" => "Guess",
-            "url" => "guess",
-            "title" => "Guess the number game",
+        "text" => "Gissa",
+        "url" => "gissa",
+        "title" => "Anax test page for routes.",
         ],
         [
             "text" => "Dice100",

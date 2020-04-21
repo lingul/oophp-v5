@@ -1,7 +1,5 @@
 <?php
-
-include(__DIR__ . "/GuessException.php");
-
+require "GuessException.php";
 /**
  * Guess my number, a class supporting the game through GET, POST and SESSION.
  */
@@ -11,9 +9,8 @@ class Guess
      * @var int $number   The current secret number.
      * @var int $tries    Number of tries a guess has been made.
      */
-    private $number = null;
-    private $tries = 6;
-
+    public $number;
+    public $tries;
 
     /**
      * Constructor to initiate the object with current game settings,
@@ -26,11 +23,13 @@ class Guess
      */
     public function __construct(int $number = -1, int $tries = 6)
     {
-        $this->tries = $tries;
         if ($number === -1) {
-            $number = rand(1, 100);
+            $this->random();
+            $this->tries = $tries;
+        } else {
+            $this->number = $number;
+            $this->tries = $tries;
         }
-        $this->number = $number;
     }
 
 
@@ -40,10 +39,12 @@ class Guess
      *
      * @return void
      */
-    public function random() : void
+    public function random()
     {
+        $this->tries = 6;
         $this->number = rand(1, 100);
     }
+
 
 
     /**
@@ -51,10 +52,11 @@ class Guess
      *
      * @return int as number of tries made.
      */
-    public function tries() : int
+    public function tries()
     {
         return $this->tries;
     }
+
 
 
     /**
@@ -62,10 +64,11 @@ class Guess
      *
      * @return int as the secret number.
      */
-    public function number() : int
+    public function number()
     {
         return $this->number;
     }
+
 
 
     /**
@@ -76,24 +79,28 @@ class Guess
      *
      * @return string to show the status of the guess made.
      */
-    public function makeGuess(int $guess) : string
+    public function makeGuess($number)
     {
-        if ($this->tries < 1) {
-            return "what it is. Noone will ever know. You are out of guesses. Restart to try again";
-        } else {
-            $this->tries -= 1;
-            if ($guess < 1 || $guess > 100) {
-                throw new GuessException("Guess is out of bounds.");
+        try {
+            if ($number < 1 || $number > 100) {
+                throw new GuessException("Your guess is out of bounds.");
             }
+        } catch (GuessException $e) {
+            return "Error: " . $e->getMessage();
+        }
 
-            if ($guess < $this->number) {
-                $result = "Too LOW!";
-            } elseif ($guess > $this->number) {
-                $result = "Too HIGH!";
+        if ($this->tries > 0) {
+            $this->tries--;
+            if ($number < $this->number) {
+                return "Your Guess <b>{$number}</b> is to <b>low</b>!";
+            } else if ($number > $this->number) {
+                return "Your Guess <b>{$number}</b> is to <b>high</b>! ";
             } else {
-                $result = "CORRECT! A new number is now selected. Go again?";
+                $this->tries = 0;
+                return "Your Guess <b>{$number}</b> is <b>correct</b>!";
             }
-            return $result;
+        } else {
+            return "You got no more guesses!";
         }
     }
 }

@@ -1,10 +1,10 @@
 <?php
-
-namespace ligm19\Guess;
+namespace Anax\Guess;
 
 /**
- * Exception class for GuessException.
+ * Guess exception
  */
+
 class GuessException extends \Exception
 {
 }
