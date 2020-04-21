@@ -66,7 +66,7 @@ return [
         [
         "text" => "Gissa",
         "url" => "gissa",
-        "title" => "Anax test page for routes.",
+        "title" => "Guess",
         ],
         [
             "text" => "Tärningsspel 100",

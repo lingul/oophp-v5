@@ -65,12 +65,12 @@ return [
             "title" => "Testa och lek med test- och exempelprogram",
         ],
         [
-            "text" => "Guess",
-            "url" => "guess",
-            "title" => "Guess the number game",
+        "text" => "Gissa",
+        "url" => "gissa",
+        "title" => "Guess",
         ],
         [
-            "text" => "Dice100",
+            "text" => "Tärningsspel 100",
             "url" => "dice",
             "title" => "100 Dice Game",
         ],
