@@ -69,7 +69,7 @@ return [
         "title" => "Anax test page for routes.",
         ],
         [
-            "text" => "Dice100",
+            "text" => "Tärningsspel 100",
             "url" => "dice",
             "title" => "100 Dice Game",
         ],
