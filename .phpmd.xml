@@ -7,12 +7,14 @@
          xsi:noNamespaceSchemaLocation="
                      http://pmd.sf.net/ruleset_xml_schema.xsd">
     <description>
-        Custom rule set for htmlphp course.
+        Custom rule set for oophp course.
     </description>
 
-    <exclude-pattern>vendor</exclude-pattern>
-    <exclude-pattern>htdocs</exclude-pattern>
-    <exclude-pattern>cache</exclude-pattern>
+    <exclude-pattern>build/</exclude-pattern>
+    <exclude-pattern>doc/</exclude-pattern>
+    <exclude-pattern>htdocs/</exclude-pattern>
+    <exclude-pattern>view/</exclude-pattern>
+    <exclude-pattern>vendor/</exclude-pattern>
 
     <rule ref="rulesets/cleancode.xml">
         <exclude name="BooleanArgumentFlag" />
@@ -29,32 +31,14 @@
 
     <rule ref="rulesets/naming.xml">
         <exclude name="ShortVariable" />
-        <exclude name="ShortMethodName" />
     </rule>
 
     <rule ref="rulesets/naming.xml/ShortVariable">
         <properties>
-            <property name="exceptions" value="i,j,db,id,di" />
+            <property name="exceptions" value="i,j,db,id,di,t,e" />
         </properties>
     </rule>
 
-    <rule ref="rulesets/naming.xml/ShortMethodName">
-        <properties>
-            <property name="exceptions" value="t,e" />
-        </properties>
-    </rule>
-
-    <rule ref="rulesets/unusedcode.xml">
-        <exclude name="UnusedLocalVariable" />
-    </rule>
-
-    <rule ref="rulesets/unusedcode.xml/UnusedLocalVariable">
-        <properties>
-            <property
-                name="allow-unused-foreach-variables"
-                description="Allow unused variables in foreach language constructs."
-                value="true" />
-        </properties>
-    </rule>
+    <rule ref="rulesets/unusedcode.xml" />
 
 </ruleset>

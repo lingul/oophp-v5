@@ -5,7 +5,7 @@
  */
 $app->router->get("gissa/get", function () use ($app) {
     $data = [
-        "title" => "Guess tha number (GET)",
+        "title" => "Guess the number (GET)",
         "method" => "GET",
     ];
 
@@ -51,7 +51,7 @@ $app->router->get("gissa/get", function () use ($app) {
  */
 $app->router->get("gissa/post", function () use ($app) {
     $data = [
-        "title" => "Guess tha number (SESSION)",
+        "title" => "Guess the number (SESSION)",
         "method" => "POST",
     ];
 
@@ -77,7 +77,7 @@ $app->router->get("gissa/post", function () use ($app) {
  */
 $app->router->post("gissa/post", function () use ($app) {
     $data = [
-        "title" => "Guess tha number (SESSION)",
+        "title" => "Guess the number (SESSION)",
         "method" => "POST",
     ];
 
@@ -121,7 +121,7 @@ $app->router->post("gissa/post", function () use ($app) {
  */
 $app->router->get("gissa/session", function () use ($app) {
     $data = [
-        "title" => "Guess tha number (SESSION)",
+        "title" => "Guess the number (SESSION)",
         "method" => "POST",
     ];
 
@@ -147,7 +147,7 @@ $app->router->get("gissa/session", function () use ($app) {
  */
 $app->router->post("gissa/session", function () use ($app) {
     $data = [
-        "title" => "Guess tha number (SESSION)",
+        "title" => "Guess the number (SESSION)",
         "method" => "POST",
     ];
 

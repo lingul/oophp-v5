@@ -58,13 +58,6 @@ if ($data[0]->getTurn() === 1 && !$finished) {
     </tr>
 </table>
 
-
-
-
-
-
-
-
 <form action="roll">
 <input type="submit" value="Roll dice" <?= $data[0]->getTurn() !== 0 || $finished ? "disabled" : "" ?> >
 </form>
