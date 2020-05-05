@@ -7,13 +7,13 @@
     "autoload": {
         "psr-4": {
             "Anax\\": "src/",
-            "Pon\\": "src/"
+            "Mahm\\": "src/"
         },
         "files": ["src/function.php"]
     },
     "require": {
-        "anax/anax-oophp-me": "^2.0.0@beta",
-        "anax/database": "^2.2"
+        "anax/anax-oophp-me": "^1.0.5",
+        "anax/database": "^2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^7"

@@ -2748,7 +2748,7 @@ template {
 .fa-mortar-pestle:before {
   content: "\f5a7";
 }
-.fa-mosque:before {
+.fa-ligm19que:before {
   content: "\f678";
 }
 .fa-motorcycle:before {
@@ -5397,4 +5397,47 @@ a:visited {
 /* mouse over link */
 a:hover {
   color: gold;
+}
+h1 {
+    border-bottom: 1px double #ccc;
+}
+
+main {
+    min-height: 10em;
+}
+
+table {
+    border: 1px solid #ccc;
+    padding: 0.5em;
+}
+
+tr.first {
+    background-color: #ddd;
+}
+
+tr:hover {
+    background-color: #eee;
+}
+
+th {
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+}
+
+th,
+td {
+    padding: 4px;
+}
+
+img.thumb {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+footer {
+    border-top: 1px solid #ccc;
+}
+
+footer a {
+    text-decoration: none;
 }

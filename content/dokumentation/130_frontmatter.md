@@ -1,7 +1,7 @@
 ---
-author: mos
+author: ligm19
 revision:
-    "2018-10-23": "(A, mos) Första utgåvan."
+    "2018-10-23": "(A, ligm19) Första utgåvan."
 ---
 Frontmatter
 ===========================
@@ -33,11 +33,11 @@ Revisionshistorik som frontmatter {#revision}
  Här är ett exempel på YAML frontmatter som ger (en författare och) en lista över de versioner som ett dokument har haft. Listan är en key/value lista som innehåller ett datum och en sträng som förklarar versionen.
  
  ```yaml
-author: mos
+author: ligm19
 revision:
-    "2018-09-24": "(C, mos) Genomgång efter ny desktopapplikation av SQLite."
-    "2015-10-13": "(B, mos) Stava rätt på filnamn till databasen."
-    "2015-06-10": "(A, mos) Första utgåvan för htmlphp version 2 av kursen."
+    "2018-09-24": "(C, ligm19) Genomgång efter ny desktopapplikation av SQLite."
+    "2015-10-13": "(B, ligm19) Stava rätt på filnamn till databasen."
+    "2015-06-10": "(A, ligm19) Första utgåvan för htmlphp version 2 av kursen."
 ```
 
 När den informationen senare renderas av en templatefil så kan den läggas i slutet av dokumentet och se ut så här.

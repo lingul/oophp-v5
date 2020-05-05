@@ -1,14 +1,14 @@
 {
-    "name": "mos/phpunit-test",
+    "name": "ligm19/phpunit-test",
     "description": "To check if phpunit is working.",
     "license": "MIT",
     "authors": [
             {
                 "name": "Mikael Roos",
-                "email": "mos@dbwebb.se"
+                "email": "ligm19@dbwebb.se"
             }
     ],
     "autoload": {
-        "psr-4": {"Mos\\": "src/"}
+        "psr-4": {"ligm19\\": "src/"}
     }
 }

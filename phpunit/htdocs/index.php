@@ -1,6 +1,6 @@
 <?php
 
-namespace Mos\Guess;
+namespace ligm19\Guess;
 
 require __DIR__ . "/../config/config.php";
 require __DIR__ . "/../vendor/autoload.php";

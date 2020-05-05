@@ -1,6 +1,6 @@
 <?php
 
-namespace Mos\Guess;
+namespace ligm19\Guess;
 
 use PHPUnit\Framework\TestCase;
 
@@ -20,17 +20,17 @@ class GuessCreateObjectTestException extends TestCase
 
   /**
      *
-     * @expectedException \Mos\Guess\GuessException
+     * @expectedException \ligm19\Guess\GuessException
      *
      *
      */
     public function testExpectedExceptionIsRaised()
     {
         $guess = new Guess(7, 1);
-        $this->assertInstanceOf("\Mos\Guess\Guess", $guess);
+        $this->assertInstanceOf("\ligm19\Guess\Guess", $guess);
 
         $exc = new GuessException();
-        $this->assertInstanceOf("\Mos\Guess\GuessException", $exc);
+        $this->assertInstanceOf("\ligm19\Guess\GuessException", $exc);
 
         $guess->makeGuess(200);
     }

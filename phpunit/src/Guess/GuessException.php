@@ -1,6 +1,6 @@
 <?php
 
-namespace Mos\Guess;
+namespace ligm19\Guess;
 
 /**
  * Exception class for Guess.

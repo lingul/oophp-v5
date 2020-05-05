@@ -47,7 +47,7 @@ This is the directory structure for the example program.
 | `.phpunit.xml`  | Configuration read by phpunit on startup. |
 
 Check out the directory structure and the content of the files to get acquainted with them.
- 
+
 
 
 Setup autoloader
@@ -128,7 +128,7 @@ Open a web browser to `build/coverage/index.html` and review the report.
 
 ![Details of code coverage](img/code-coverage-detail.png)
 
-As a general rule of thumb, try go get the report to show the color green. It is nice to have 100% code coverage, but sometimes its just fine with 70%. The percentage of code coverage is not the single most important metric of how good your test suite are.
+As a general rule of thumb, try go get the report to show the color green. It is nice to have 100% code coverage, but sometimes its just fine with 70%. The percentage of code coverage is not the single ligm19t important metric of how good your test suite are.
 
 
 
@@ -138,7 +138,7 @@ Get good code coverage
 
 One aim with a test suite is to cover all lines of code, we measure this through code coverage. The test cases you write should optimally cover the whole code, each line, at least once. Some code sections need to be covered by several test cases due to their complexity depending on different values or states.
 
-In most cases one should be able to get code coverage thought the class public API, the public methods. That would imply a class that is written to be testable. If you have code sections that can not be reached through the public API, then you should ask yourself "why do I have this structure?".
+In ligm19t cases one should be able to get code coverage thought the class public API, the public methods. That would imply a class that is written to be testable. If you have code sections that can not be reached through the public API, then you should ask yourself "why do I have this structure?".
 
 Sometimes you encounter classes that are hard to write test cases for, or to get enough code coverage. This can be an indicator to refactor the class to make it more testable.
 
@@ -152,7 +152,7 @@ Review a test case
 A basic setup for a test class is as follows, it is a class with any namespace and name ending with `Test` and extending the class `\PHPUnit\Framework\TestCase`.
 
 ```php
-namespace Mos\Guess;
+namespace ligm19\Guess;
 
 use PHPUnit\Framework\TestCase;
 
@@ -177,7 +177,7 @@ Add a test to the class by adding a method and naming it prefixed by `test`. All
 public function testCreateObjectNoArguments()
 {
     $guess = new Guess();
-    $this->assertInstanceOf("\Mos\Guess\Guess", $guess);
+    $this->assertInstanceOf("\ligm19\Guess\Guess", $guess);
 
     $res = $guess->tries();
     $exp = 6;

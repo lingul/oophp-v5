@@ -64,19 +64,24 @@ return [
             "title" => "Testa och lek med test- och exempelprogram",
         ],
         [
-        "text" => "Gissa",
-        "url" => "gissa",
-        "title" => "Guess",
-        ],
-        [
-            "text" => "Tärningsspel 100",
-            "url" => "dice",
-            "title" => "100 Dice Game",
-        ],
-        [
             "text" => "Anax dev",
             "url" => "dev",
             "title" => "Anax development utilities",
+        ],
+        [
+            "text" => "Gissa",
+            "url" => "gissa",
+            "title" => "Guess",
+        ],
+        [
+            "text" => "Tärning 100",
+            "url" => "100",
+            "title" => "Spela tärning 100",
+        ],
+        [
+            "text" => "Filmer",
+            "url" => "movie",
+            "title" => "Filmdatabas",
         ],
     ],
 ];

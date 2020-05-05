@@ -1,5 +1,5 @@
 <?php
-namespace Mos\Guess;
+namespace ligm19\Guess;
 
 /**
  * Guess my number, a class supporting the game through GET, POST and SESSION.

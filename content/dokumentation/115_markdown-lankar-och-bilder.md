@@ -1,7 +1,7 @@
 ---
-author: mos
+author: ligm19
 revision:
-    "2019-03-19": "(A, mos) Kopierad från ramverk1 och genomgången."
+    "2019-03-19": "(A, ligm19) Kopierad från ramverk1 och genomgången."
 ---
 Markdown, länkar och bilder
 ===========================

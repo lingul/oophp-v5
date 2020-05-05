@@ -1,7 +1,7 @@
 ---
-author: mos
+author: ligm19
 revision:
-    "2019-03-21": "(A, mos) Första utgåvan."
+    "2019-03-21": "(A, ligm19) Första utgåvan."
 ---
 Att göra
 ==========================

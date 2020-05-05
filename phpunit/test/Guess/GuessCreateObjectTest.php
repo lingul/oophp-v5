@@ -1,6 +1,6 @@
 <?php
 
-namespace Mos\Guess;
+namespace ligm19\Guess;
 
 use PHPUnit\Framework\TestCase;
 
@@ -16,7 +16,7 @@ class GuessCreateObjectTest extends TestCase
     public function testCreateObjectNoArguments()
     {
         $guess = new Guess();
-        $this->assertInstanceOf("\Mos\Guess\Guess", $guess);
+        $this->assertInstanceOf("\ligm19\Guess\Guess", $guess);
 
         $res = $guess->tries();
         $exp = 6;
@@ -31,7 +31,7 @@ class GuessCreateObjectTest extends TestCase
     public function testCreateObjectFirstArgument()
     {
         $guess = new Guess(42);
-        $this->assertInstanceOf("\Mos\Guess\Guess", $guess);
+        $this->assertInstanceOf("\ligm19\Guess\Guess", $guess);
 
         $res = $guess->tries();
         $exp = 6;
@@ -51,7 +51,7 @@ class GuessCreateObjectTest extends TestCase
     public function testCreateObjectBothArguments()
     {
         $guess = new Guess(42, 7);
-        $this->assertInstanceOf("\Mos\Guess\Guess", $guess);
+        $this->assertInstanceOf("\ligm19\Guess\Guess", $guess);
 
         $res = $guess->tries();
         $exp = 7;
@@ -70,7 +70,7 @@ class GuessCreateObjectTest extends TestCase
     public function testCreateObjectWSecretNr()
     {
         $guess = new Guess(50);
-        $this->assertInstanceOf("\Mos\Guess\Guess", $guess);
+        $this->assertInstanceOf("\ligm19\Guess\Guess", $guess);
 
         $res = $guess->number();
         $exp = 50;
@@ -86,7 +86,7 @@ class GuessCreateObjectTest extends TestCase
     public function testCreateObjectRandomNr()
     {
         $guess = new Guess(-1);
-        $this->assertInstanceOf("\Mos\Guess\Guess", $guess);
+        $this->assertInstanceOf("\ligm19\Guess\Guess", $guess);
 
         $guess->random();
         $res = $guess->number();
@@ -106,7 +106,7 @@ class GuessCreateObjectTest extends TestCase
     public function testCreateObjectTestCorrectNr()
     {
         $guess = new Guess(7);
-        $this->assertInstanceOf("\Mos\Guess\Guess", $guess);
+        $this->assertInstanceOf("\ligm19\Guess\Guess", $guess);
 
         $res = $guess->makeGuess(7);
         $exp = "correct!!!";
@@ -122,7 +122,7 @@ class GuessCreateObjectTest extends TestCase
     public function testCreateObjectOutOfTries()
     {
         $guess = new Guess(7, 1);
-        $this->assertInstanceOf("\Mos\Guess\Guess", $guess);
+        $this->assertInstanceOf("\ligm19\Guess\Guess", $guess);
 
         $guess->makeGuess(2);
         $res2 = $guess->makeGuess(1);
@@ -139,7 +139,7 @@ class GuessCreateObjectTest extends TestCase
     public function testCreateObjectHigh()
     {
         $guess = new Guess(7, 1);
-        $this->assertInstanceOf("\Mos\Guess\Guess", $guess);
+        $this->assertInstanceOf("\ligm19\Guess\Guess", $guess);
 
         $res = $guess->makeGuess(8);
         $exp = "to high...";
@@ -155,7 +155,7 @@ class GuessCreateObjectTest extends TestCase
     public function testCreateObjectLow()
     {
         $guess = new Guess(7, 1);
-        $this->assertInstanceOf("\Mos\Guess\Guess", $guess);
+        $this->assertInstanceOf("\ligm19\Guess\Guess", $guess);
 
         $res = $guess->makeGuess(2);
         $exp = "to low...";
