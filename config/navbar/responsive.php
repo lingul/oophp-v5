@@ -41,6 +41,26 @@ return [
                         "url" => "redovisning/kmom04",
                         "title" => "Redovisning för kmom04.",
                     ],
+                    [
+                        "text" => "Kmom05",
+                        "url" => "redovisning/kmom05",
+                        "title" => "Redovisning för kmom05.",
+                    ],
+                    [
+                        "text" => "Kmom06",
+                        "url" => "redovisning/kmom06",
+                        "title" => "Redovisning för kmom06.",
+                    ],
+                    [
+                        "text" => "Kmom05",
+                        "url" => "redovisning/kmom05",
+                        "title" => "Redovisning för kmom05.",
+                    ],
+                    [
+                        "text" => "Kmom06",
+                        "url" => "redovisning/kmom06",
+                        "title" => "Redovisning för kmom06.",
+                    ],
                 ],
             ],
         ],
@@ -83,6 +103,26 @@ return [
             "text" => "Filmer",
             "url" => "movie",
             "title" => "Filmdatabas",
+        ],
+        [
+            "text" => "TextFilter",
+            "url" => "filter/index",
+            "title" => "TextFilter tests",
+        ],
+        [
+            "text" => "Blog",
+            "url" => "blog/show-all",
+            "title" => "Blog",
+        ],
+        [
+            "text" => "Login",
+            "url" => "blog/login",
+            "title" => "Login",
+        ],
+        [
+            "text" => "Logout",
+            "url" => "blog/logout",
+            "title" => "Logout",
         ],
     ],
 ];
