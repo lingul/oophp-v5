@@ -34,7 +34,7 @@ namespace Anax\View;
         <tr>
             <td><?= htmlentities($id) ?></td>
             <td><?= htmlentities($row->id) ?></td>
-            <td><img class="thumb" src="../<?= htmlentities($row->image) ?>"></td>
+            <td><img class="thumb" src="../htdocs/<?= htmlentities($row->image) ?>"></td>
             <td><?= htmlentities($row->title) ?></td>
             <td><?= htmlentities($row->year) ?></td>
         <tr>
