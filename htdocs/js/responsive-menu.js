@@ -1,6 +1,6 @@
 /**
  * @preserve Setup the basis for the responsive menu.
- * @author Mikael Roos <ligm19@dbwebb.se>
+ * @author Linnea <ligm19@dbwebb.se>
  * @see {@link https://github.com/janaxs/responsive-menu}
  */
 (function() {

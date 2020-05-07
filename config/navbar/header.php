@@ -99,17 +99,17 @@ return [
             "title" => "TextFilter tests",
         ],
         [
-            "text" => "Blog",
+            "text" => "Blogg",
             "url" => "blog/show-all",
             "title" => "Blog",
         ],
         [
-            "text" => "Login",
+            "text" => "Logga in",
             "url" => "blog/login",
             "title" => "Login",
         ],
         [
-            "text" => "Logout",
+            "text" => "Logga ut",
             "url" => "blog/logout",
             "title" => "Logout",
         ],
